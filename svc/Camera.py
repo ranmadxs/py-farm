@@ -10,8 +10,8 @@ import os
 
 FOLDER_WEBCAM = '/tmp/motion/'
 CAMERA_DEVICE = '/dev/video0'
-PIC_WIDTH = 640
-PIC_HEIGHT = 480
+PIC_WIDTH = 384
+PIC_HEIGHT = 288
 #fswebcam -d /dev/video0 -r 640x480 test.jpg
 class WebCam():
     def capturarDatos(self):        
