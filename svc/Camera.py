@@ -9,8 +9,8 @@ from time import gmtime, strftime
 import os
 
 FOLDER_WEBCAM = '/tmp/motion/'
-PIC_WIDTH = 352
-PIC_HEIGHT = 288
+PIC_WIDTH = 320
+PIC_HEIGHT = 240
 
 class WebCam():
     def capturarDatos(self):
