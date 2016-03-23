@@ -21,7 +21,7 @@ class WebCam():
         print "Usando camara %s ..." % CAMERA_DEVICE
         fileTime = strftime("%Y-%m-%d_%H:%M:%S", gmtime())
         fileName = '%spic_%s.jpg'%(FOLDER_WEBCAM, fileTime)    
-        os.system('fswebcam -d %s -r %dx%d %s' % (CAMERA_DEVICE, PIC_WIDTH, PIC_HEIGHT, fileName))  
+        os.system('fswebcam -d %s -r %dx%d %s -S2' % (CAMERA_DEVICE, PIC_WIDTH, PIC_HEIGHT, fileName))  
         
 '''        pygame.camera.init()
         cameras = pygame.camera.list_cameras()
