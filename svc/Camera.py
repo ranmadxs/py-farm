@@ -3,8 +3,8 @@ Created on 22-03-2016
 
 @author: esanchez
 '''
-import pygame.camera
-import pygame.image
+#import pygame.camera
+#import pygame.image
 from time import gmtime, strftime
 import os
 
@@ -12,7 +12,7 @@ FOLDER_WEBCAM = '/tmp/motion/'
 CAMERA_DEVICE = '/dev/video0'
 PIC_WIDTH = 384
 PIC_HEIGHT = 288
-#fswebcam -d /dev/video0 -r 640x480 test.jpg
+
 class WebCam():
     def capturarDatos(self):        
         
@@ -21,8 +21,8 @@ class WebCam():
         print "Usando camara %s ..." % CAMERA_DEVICE
         fileTime = strftime("%Y-%m-%d_%H:%M:%S", gmtime())
         fileName = '%spic_%s.jpg'%(FOLDER_WEBCAM, fileTime)    
-      #  os.system('fswebcam -d %s -r %dx%d %s -S2 ' % (CAMERA_DEVICE, PIC_WIDTH, PIC_HEIGHT, fileName))  
-        
+        os.system('fswebcam -d %s -r %dx%d %s -S2 ' % (CAMERA_DEVICE, PIC_WIDTH, PIC_HEIGHT, fileName))  
+'''        
         pygame.camera.init()
         cameras = pygame.camera.list_cameras()
         print "Usando camara %s ..." % cameras[0]
@@ -33,3 +33,4 @@ class WebCam():
         print 'Guardando imagen %s'%fileName
         pygame.image.save(image, fileName)
         webcam.stop()
+'''
