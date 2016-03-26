@@ -15,6 +15,10 @@ class Higrometro():
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(17, GPIO.IN)
         valor = GPIO.input(17)
+        estado = "Seco"
+        if(valor <= 0.5) :
+            estado = "Humedo"
+        print 'Estado Tierra : %s (%d)'%(estado, valor)
 
         '''lectura = random.uniform(0, 1)
         estado = "Seco"
