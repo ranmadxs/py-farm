@@ -7,17 +7,23 @@ Created on 22-03-2016
 import random
 from svc import SessionFactory
 from time import localtime, strftime
+import RPi.GPIO as GPIO   #Importamos las librerias necesarias para usar los pines GPIO
 
 class Higrometro():
 
     def capturarDatos(self):
-        lectura = random.uniform(0, 1)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(17, GPIO.IN)
+        valor = GPIO.input(17)
+
+        '''lectura = random.uniform(0, 1)
         estado = "Seco"
         valor = 1;
         if(lectura <=0.5) :
             estado = "Humedo"
             valor = 0
         print 'Estado Tierra : %s (%d)'%(estado, valor)
+        '''
         self.guardarDatos(valor)
         
     def guardarDatos(self, valor):
