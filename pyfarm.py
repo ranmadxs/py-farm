@@ -21,11 +21,11 @@ def threadStart(rango, sensor, tiempo):
         
 def start():
     
-    t1 = threading.Thread(target=threadStart, args = (2, SensorTemperatura.DHT11(), SECONDS_X_HOUR * 1), name='WorkerSensorTemperatura')
+    t1 = threading.Thread(target=threadStart, args = (500, SensorTemperatura.DHT11(), SECONDS_X_HOUR * 1), name='WorkerSensorTemperatura')
     t1.start()
 
-    t2 = threading.Thread(target=threadStart, args = (2, SensorHumedarTierra.Higrometro(), SECONDS_X_HOUR * 12), name='WorkerSensorTemperatura')
-    t2.start()
+    #t2 = threading.Thread(target=threadStart, args = (2, SensorHumedarTierra.Higrometro(), SECONDS_X_HOUR * 12), name='WorkerSensorTemperatura')
+    #t2.start()
     
     #t3 = threading.Thread(target=threadStart, args = (2, Camera.WebCam(), SECONDS_X_HOUR * 12), name='WorkerCamera')
     #t3.start()
