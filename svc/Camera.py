@@ -5,7 +5,7 @@ Created on 22-03-2016
 '''
 #import pygame.camera
 #import pygame.image
-from time import gmtime, strftime
+from time import localtime, strftime
 import os
 
 FOLDER_WEBCAM = '/tmp/motion/'
@@ -19,9 +19,9 @@ class WebCam():
         if not os.path.exists(FOLDER_WEBCAM):
             os.makedirs(FOLDER_WEBCAM)
         print "Usando camara %s ..." % CAMERA_DEVICE
-        fileTime = strftime("%Y-%m-%d_%H:%M:%S", gmtime())
+        fileTime = strftime("%Y-%m-%d_%H:%M:%S", localtime())
         fileName = '%spic_%s.jpg'%(FOLDER_WEBCAM, fileTime)    
-        os.system('fswebcam -d %s -r %dx%d %s -S2 ' % (CAMERA_DEVICE, PIC_WIDTH, PIC_HEIGHT, fileName))  
+        os.system('fswebcam -d %s -r %dx%d %s -S2 --set brightness=65%' % (CAMERA_DEVICE, PIC_WIDTH, PIC_HEIGHT, fileName))  
 '''        
         pygame.camera.init()
         cameras = pygame.camera.list_cameras()

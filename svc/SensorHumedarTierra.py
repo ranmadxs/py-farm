@@ -5,6 +5,8 @@ Created on 22-03-2016
 '''
 
 import random
+from svc import SessionFactory
+from time import localtime, strftime
 
 class Higrometro():
 
@@ -16,3 +18,10 @@ class Higrometro():
             estado = "Humedo"
             valor = 0
         print 'Estado Tierra : %s (%d)'%(estado, valor)
+        self.guardarDatos(valor)
+        
+    def guardarDatos(self, valor):
+        fecha = strftime("%Y-%m-%d %H:%M:%S", localtime())
+        query =         "INSERT INTO humedad_tierra (id, estado, fecha) "
+        query = query + "VALUES (NULL, '%d', '%s')" % (valor, fecha)
+        SessionFactory.run(query)        
