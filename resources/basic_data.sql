@@ -53,9 +53,9 @@ CREATE TABLE IF NOT EXISTS `temperatura` (
 
 CREATE TABLE IF NOT EXISTS `calendar_event` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) COLLATE utf16_spanish_ci NOT NULL,
-  `descripcion` text COLLATE utf16_spanish_ci NOT NULL,
-  `tipo` enum('calendario') COLLATE utf16_spanish_ci NOT NULL,
-  `fecha` datetime NOT NULL,
+  `nombre` varchar(255) COLLATE utf16_spanish_ci DEFAULT NULL,
+  `descripcion` text COLLATE utf16_spanish_ci,
+  `tipo` enum('calendario') COLLATE utf16_spanish_ci DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_spanish_ci AUTO_INCREMENT=1 ;
