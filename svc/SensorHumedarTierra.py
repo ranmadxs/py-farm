@@ -8,6 +8,7 @@ import random
 from svc import SessionFactory
 from time import localtime, strftime
 import RPi.GPIO as GPIO   #Importamos las librerias necesarias para usar los pines GPIO
+from libs.log import log
 
 class Higrometro():
 
@@ -18,7 +19,7 @@ class Higrometro():
         estado = "Seco"
         if(valor <= 0.5) :
             estado = "Humedo"
-        print 'Estado Tierra : %s (%d)'%(estado, valor)
+        log.info('Estado Tierra : %s (%d)'%(estado, valor))
 
         '''lectura = random.uniform(0, 1)
         estado = "Seco"
