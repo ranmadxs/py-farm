@@ -6,9 +6,10 @@ Created on 23-03-2016
 '''
 import MySQLdb
 import config
+from libs.log import log
 
 def run(query=''):     
- 
+    log.debug("%s"%query)
     conn = MySQLdb.connect(*config.datosDB) # Conectar a la base de datos 
     cursor = conn.cursor()         # Crear un cursor 
     cursor.execute(query)          # Ejecutar una consulta 
@@ -25,7 +26,7 @@ def run(query=''):
     return data
 
 def init(file_path):
-    print ("SessionFactory init data base")
+    log.info ("SessionFactory init data base")
     query = ""
     with open(file_path) as f:
         for line in f:

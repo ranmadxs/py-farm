@@ -11,8 +11,10 @@ import threading
 import time
 from svc import SensorTemperatura, SensorHumedarTierra, Camera, SessionFactory
 from os import path
+from libs.log import log
 
 SECONDS_X_HOUR = 3600
+
 
 def threadStart(rango, sensor, tiempo):
     for x in range(0, rango):
@@ -29,8 +31,8 @@ def start():
     
     #t3 = threading.Thread(target=threadStart, args = (2, Camera.WebCam(), SECONDS_X_HOUR * 12), name='WorkerCamera')
     #t3.start()
-    
-print ("pyfarm init")
+
+log.info('>> Inicio pyfarm <<')
 file_path = path.relpath("resources/basic_data.sql")
 
 SessionFactory.init(file_path)
