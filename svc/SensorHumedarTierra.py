@@ -18,10 +18,7 @@ class Higrometro():
         log.info("Iniciando Arduino Serial")
         continuar = True
         while continuar:
-            comando = raw_input('Introduce un comando: ') #Input
-            if comando == 'exit':
-                continuar = False
-
+            None
         self.arduino.close() #Finalizamos la comunicacio
 
     def capturarDatos(self):
