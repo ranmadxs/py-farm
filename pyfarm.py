@@ -6,7 +6,7 @@ Created on 22-03-2016
 
 @author: esanchez
 '''
-
+import serial
 import threading
 import time
 from svc import SensorHumedarTierra, Camera, SessionFactory, SensorTemperatura, SensorLuz
@@ -21,14 +21,24 @@ def threadStart(rango, sensor, tiempo):
         sensor.capturarDatos()
         time.sleep(tiempo)
         
+def initArduino():
+    serial.Serial('/dev/ttyUSB0', 9600)       
+    continuar = True
+    while continuar:
+        None
+        time.sleep(100)
+ 
+        
 def start():
+    t0 = threading.Thread(target=initArduino, name='WorkerInitArduino')
+    t0.start()
     
     t1 = threading.Thread(target=threadStart, args = (500, SensorTemperatura.DHT11(), SECONDS_X_HOUR * 1), name='WorkerSensorTemperatura')
     t1.start()
 
     time.sleep(5)
 
-    t2 = threading.Thread(target=threadStart, args = (100, SensorHumedarTierra.Higrometro(), SECONDS_X_HOUR * 3), name='WorkerSensorHumedadTierra')
+    t2 = threading.Thread(target=threadStart, args = (300, SensorHumedarTierra.Higrometro(), SECONDS_X_HOUR * 3), name='WorkerSensorHumedadTierra')
     t2.start()
 
     time.sleep(5)
