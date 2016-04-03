@@ -16,6 +16,13 @@ class Higrometro():
     def __init__(self):
         self.arduino = serial.Serial('/dev/ttyUSB0', 9600)
         log.info("Iniciando Arduino Serial")
+        continuar = True
+        while continuar:
+            comando = raw_input('Introduce un comando: ') #Input
+            if comando == 'exit':
+                continuar = False
+
+        self.arduino.close() #Finalizamos la comunicacio
 
     def capturarDatos(self):
         self.arduino.write("0YL69")
