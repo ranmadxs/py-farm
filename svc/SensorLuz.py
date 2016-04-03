@@ -16,9 +16,9 @@ class LM393():
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.GPIO_PIN, GPIO.IN)
         valor = GPIO.input(self.GPIO_PIN)
-        estado = "Luz"
+        estado = "Oscuridad"
         if(valor <= 0.5) :
-            estado = "Oscuridad"
+            estado = "Luz"
         log.debug( '%s (%d)'%(estado, valor))
         self.guardarDatos(valor)
 
