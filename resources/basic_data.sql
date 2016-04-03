@@ -28,10 +28,15 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `humedad_tierra` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `estado` int(11) DEFAULT NULL,
+  `estado` varchar(64) COLLATE utf16_spanish_ci DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
+  `ao` int(11) DEFAULT NULL,
+  `do` int(11) DEFAULT NULL,
+  `apin` int(11) DEFAULT NULL,
+  `dpin` int(11) DEFAULT NULL,
+  `humedad` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf16 COLLATE=utf16_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -56,6 +61,14 @@ CREATE TABLE IF NOT EXISTS `calendar_event` (
   `nombre` varchar(255) COLLATE utf16_spanish_ci DEFAULT NULL,
   `descripcion` text COLLATE utf16_spanish_ci,
   `tipo` enum('calendario') COLLATE utf16_spanish_ci DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_spanish_ci AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `luz` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `estado` int(11) DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_spanish_ci AUTO_INCREMENT=1 ;

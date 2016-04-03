@@ -7,32 +7,31 @@ Created on 22-03-2016
 import random
 from svc import SessionFactory
 from time import localtime, strftime
-import RPi.GPIO as GPIO   #Importamos las librerias necesarias para usar los pines GPIO
+from libs.log import log
+import serial, time, json
 from libs.log import log
 
 class Higrometro():
 
     def capturarDatos(self):
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(17, GPIO.IN)
-        valor = GPIO.input(17)
-        estado = "Seco"
-        if(valor <= 0.5) :
-            estado = "Humedo"
-        log.info('Estado Tierra : %s (%d)'%(estado, valor))
-
-        '''lectura = random.uniform(0, 1)
-        estado = "Seco"
-        valor = 1;
-        if(lectura <=0.5) :
-            estado = "Humedo"
-            valor = 0
-        print 'Estado Tierra : %s (%d)'%(estado, valor)
-        '''
-        self.guardarDatos(valor)
+        arduino = serial.Serial('/dev/ttyUSB0', 9600)
+        arduino.write("0YL69")
+        time.sleep(2)
+        #Esto lee todas la lineas
+        msg = arduino.read(arduino.inWaiting())
+        log.info(msg)
+        objs = json.loads(msg)
+        #humedad = -1 * (obj["ao"] / 1023) * 100 + 100
+        for obj in objs:
+            humedad = -1 * (float(obj["ao"]) / float(1023)) * 100 + 100
+            sensor = "%d, %d"%( obj["dpin"],  obj["apin"])
+            humedadStr = "Humedad Tierra={0:0.1f}%".format(humedad)
+            log.debug("%s en sensor %s" % (humedadStr, sensor))            
+            self.guardarDatos(obj, humedad)
         
-    def guardarDatos(self, valor):
+    def guardarDatos(self, obj, humedad):
         fecha = strftime("%Y-%m-%d %H:%M:%S", localtime())
-        query =         "INSERT INTO humedad_tierra (id, estado, fecha) "
-        query = query + "VALUES (NULL, '%d', '%s')" % (valor, fecha)
-        SessionFactory.run(query)        
+        query =         "INSERT INTO humedad_tierra (id, estado, fecha, ao, do, apin, dpin, humedad) "
+        query = query + "VALUES (NULL, '%s', '%s', %d, %d, %d, %d, %f)" % (obj["desc"], fecha, obj["ao"], obj["do"], obj["apin"], obj["dpin"], humedad)
+        SessionFactory.run(query)  
+        
