@@ -6,6 +6,7 @@ Created on 02-04-2016
 import RPi.GPIO as GPIO
 from time import localtime, strftime
 from svc import SessionFactory
+from libs.log import log
 
 class LM393():
     
@@ -18,7 +19,7 @@ class LM393():
         estado = "Luz"
         if(valor <= 0.5) :
             estado = "Oscuridad"
-        print '%s (%d)'%(estado, valor)
+        log.debug( '%s (%d)'%(estado, valor))
         self.guardarDatos(valor)
 
     def guardarDatos(self, valor):

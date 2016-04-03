@@ -4,12 +4,11 @@ Created on 22-03-2016
 @author: esanchez
 '''
 
-import random
 from svc import SessionFactory
 from time import localtime, strftime
 from libs.log import log
 import serial, time, json
-from libs.log import log
+
 
 class Higrometro():
 
