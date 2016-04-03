@@ -11,21 +11,13 @@ import serial, time, json
 
 
 class Higrometro():
-    arduino = None
-    
-    def __init__(self):
-        self.arduino = serial.Serial('/dev/ttyUSB0', 9600)
-        log.info("Iniciando Arduino Serial")
-        continuar = True
-        while continuar:
-            None
-        self.arduino.close() #Finalizamos la comunicacio
 
     def capturarDatos(self):
-        self.arduino.write("0YL69")
+        arduino = serial.Serial('/dev/ttyUSB0', 9600)
+        arduino.write("0YL69")
         time.sleep(2)
         #Esto lee todas la lineas
-        msg = self.arduino.read(self.arduino.inWaiting())
+        msg = arduino.read(arduino.inWaiting())
         log.info(msg)
         objs = json.loads(msg)
         #humedad = -1 * (obj["ao"] / 1023) * 100 + 100
