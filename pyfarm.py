@@ -30,18 +30,18 @@ def initArduino():
  
         
 def start():
-    t0 = threading.Thread(target=initArduino, name='WorkerInitArduino')
-    t0.start()
+    #t0 = threading.Thread(target=initArduino, name='WorkerInitArduino')
+    #t0.start()
     
     t1 = threading.Thread(target=threadStart, args = (500, SensorTemperatura.DHT11(), SECONDS_X_HOUR * 1), name='WorkerSensorTemperatura')
     t1.start()
 
-    time.sleep(5)
+    time.sleep(2)
 
-    t2 = threading.Thread(target=threadStart, args = (300, SensorHumedarTierra.Higrometro(), SECONDS_X_HOUR * 3), name='WorkerSensorHumedadTierra')
+    t2 = threading.Thread(target=threadStart, args = (500, SensorHumedarTierra.Higrometro(), SECONDS_X_HOUR * 1), name='WorkerSensorHumedadTierra')
     t2.start()
 
-    time.sleep(5)
+    time.sleep(2)
 
     t3 = threading.Thread(target=threadStart, args = (500, SensorLuz.LM393(), SECONDS_X_HOUR * 1), name='WorkerSensorLuz')
     t3.start()
