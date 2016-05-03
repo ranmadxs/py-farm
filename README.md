@@ -8,9 +8,11 @@ es almacenada en una base de datos MySQL (py-farm)
 
 ### Hardware
 
-1 Raspberry Pi
-1 Arduino One
-1 Sensor de Luz (LM393)
-1 Sensor de Temperatura y Humedad ambiental
+ - 1 Raspberry Pi
+ - 1 Arduino One
+ - 1 Sensor de Luz (LM393)
+ - 1 Sensor de Temperatura y Humedad ambiental (DHT11)
+ - 3 Sensores de Humedad relativa de Tierra (Sonda YL69, Módulo YL-38)
+ - 1 Cámara WEB USB
 
 
