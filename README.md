@@ -1,4 +1,4 @@
-## Py-Farm : Descripción
+## Py-Farm 
 
 Py-farm es un programa escrito en Python que tiene como finalidad comunicarse y obtener datos de sensores conectados 
 con la Raspberry Pi utilizando las entradas digitales GPIO, o con el Arduino a través del puerto USB.
@@ -14,5 +14,11 @@ es almacenada en una base de datos MySQL (py-farm)
  - 1 Sensor de Temperatura y Humedad ambiental (DHT11)
  - 3 Sensores de Humedad relativa de Tierra (Sonda YL69, Módulo YL-38)
  - 1 Cámara WEB USB
+
+### Software
+
+ - Base de Datos MySqL
+ - Python 2.x
+ - Módulos python: Adafruit_DHT, RPi.GPIO, MySQLdb
 
 
